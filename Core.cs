@@ -8,6 +8,6 @@ namespace BookPlatformWPF
 {
     internal class Core
     {
-        public static BookPlatformEntities2 Context = new BookPlatformEntities2();
+        public static qqqEntities Context = new qqqEntities();
     }
 }

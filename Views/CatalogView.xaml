@@ -33,7 +33,7 @@
                     <GridViewColumn Header="Обложка" Width="90">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding Books.CoverPath}" Width="70" Height="95" Stretch="UniformToFill"/>
+                                <Image Source="{Binding Book.CoverPath}" Width="70" Height="95" Stretch="UniformToFill"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

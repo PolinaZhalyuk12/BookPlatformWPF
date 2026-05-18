@@ -22,7 +22,7 @@
                 Click="AddNewBook_Click"
                 Padding="18,10"
                 Margin="30,0,0,0"
-                Background="#27AE60"
+                Background="#7FFF00"
                 Foreground="White"/>
 
                 <TextBox x:Name="txtSearch"
@@ -104,7 +104,7 @@
                                             Click="UnfreezeBook_Click" 
                                             Tag="{Binding Book}" 
                                             Padding="10,5"
-                                            Background="#F39C12"
+                                            Background="#FFB347"
                                             Foreground="White"
                                             Visibility="{Binding ShowUnfreezeButton}"/>
                                 </StackPanel>

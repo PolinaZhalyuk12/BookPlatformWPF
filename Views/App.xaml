@@ -10,8 +10,8 @@
         <Style TargetType="Button" x:Key="SidebarButton">
             <Setter Property="Height" Value="70"/>
             <Setter Property="Margin" Value="5"/>
-            <Setter Property="Background" Value="#34495E"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#B36FF6"/>
+            <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontSize" Value="28"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>

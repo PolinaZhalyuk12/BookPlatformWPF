@@ -19,7 +19,6 @@ namespace BookPlatformWPF
 
             string roleName = user?.Roles?.RoleName ?? "";
 
-            // ===== Замороженный аккаунт =====
             if (isFrozen)
             {
                 btnAuthor.Visibility = Visibility.Collapsed;
@@ -39,7 +38,6 @@ namespace BookPlatformWPF
                 return;
             }
 
-            // ===== Обычный режим =====
 
             btnAuthor.Visibility =
                 (roleName == "Автор" || roleName == "Администратор")

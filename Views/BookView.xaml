@@ -4,9 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel Margin="20">
-            <!-- Пометка о заморозке книги -->
-            <Border x:Name="borderFrozen" Background="#E74C3C" Padding="10" Margin="0,0,0,15" Visibility="Visible">
+        <StackPanel Margin="20" Height="2824" Width="1261">
+
+            <Border x:Name="borderFrozen" Background="#FF0000" Padding="10" Margin="0,0,0,15" Visibility="Visible">
                 <TextBlock Text="⚠️ КНИГА ЗАМОРОЖЕНА" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
             </Border>
 
@@ -23,24 +23,21 @@
             <TextBox Text="{Binding Book.Content}" TextWrapping="Wrap" IsReadOnly="True" Height="350" 
                      VerticalScrollBarVisibility="Visible" Margin="0,0,0,25"/>
 
-            <!-- Основные кнопки -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,25">
                 <Button Content="Добавить в список чтения" Click="AddToList_Click" Padding="12,8" Margin="0,0,10,0"/>
                 <Button Content="Оставить отзыв" Click="LeaveReview_Click" Padding="12,8" Margin="0,0,10,0"/>
                 <Button Content="Пожаловаться на книгу" Click="ComplainBook_Click" Padding="12,8" Margin="0,0,10,0"/>
-                <Button Content="Пожаловаться на автора" Click="ComplainAuthor_Click" Padding="12,8" Background="#E67E22" Foreground="White"/>
+                <Button Content="Пожаловаться на автора" Click="ComplainAuthor_Click" Padding="12,8" Background="#FFB347" Foreground="White"/>
             </StackPanel>
 
-            <!-- Админ панель -->
             <StackPanel x:Name="AdminPanel" Orientation="Horizontal" Margin="0,0,0,20" Visibility="Visible">
                 <Button Content="Заморозить / Разморозить книгу" 
                         Click="FreezeBook_Click" 
                         Padding="12,8" 
-                        Background="#E74C3C" 
+                        Background="#FF0000" 
                         Foreground="White"/>
             </StackPanel>
 
-            <!-- Отзывы -->
             <TextBlock Text="Отзывы читателей" FontSize="20" FontWeight="Bold" Margin="0,10,0,15"/>
             <ListView ItemsSource="{Binding Reviews}" Height="320">
                 <ListView.View>
@@ -64,7 +61,7 @@
                                                 Click="ComplainReview_Click" 
                                                 Tag="{Binding}" 
                                                 Padding="6,3"/>
-                                        <!-- Кнопка заморозки отзыва только для админа -->
+
                                         <Button Content="Заморозить"
         Click="FreezeReview_Click"
         Loaded="FreezeReviewButton_Loaded"

@@ -42,20 +42,17 @@ namespace BookPlatformWPF
         }
         private Users GetCurrentUser()
         {
-            // Основной способ — из MainWindow
             if (Application.Current.MainWindow is MainWindow mainWindow && mainWindow.CurrentUser != null)
             {
                 return mainWindow.CurrentUser;
             }
 
-            // Если MainWindow не найден — экстренный вариант (нежелательно)
             MessageBox.Show("Не удалось определить текущего пользователя!", "Ошибка",
                             MessageBoxButton.OK, MessageBoxImage.Warning);
             return null;
         }
         private void UpdateVisibility()
         {
-            // Проверка, является ли текущий пользователь администратором
             bool isAdmin = false;
             if (_currentUser != null && _currentUser.Roles != null)
             {
@@ -63,7 +60,6 @@ namespace BookPlatformWPF
                     isAdmin = true;
             }
 
-            // === Админ панель (заморозка книги) ===
             if (isAdmin == true)
             {
                 AdminPanel.Visibility = Visibility.Visible;
@@ -73,7 +69,6 @@ namespace BookPlatformWPF
                 AdminPanel.Visibility = Visibility.Collapsed;
             }
 
-            // === Предупреждение о заморозке книги ===
             if (_currentBook != null && _currentBook.IsFrozen)
             {
                 borderFrozen.Visibility = Visibility.Visible;
@@ -86,7 +81,6 @@ namespace BookPlatformWPF
         }
        
 
-        // ==================== ДОБАВИТЬ В СПИСОК ЧТЕНИЯ ====================
         private void AddToList_Click(object sender, RoutedEventArgs e)
         {
             if (_currentUser == null)
@@ -95,7 +89,6 @@ namespace BookPlatformWPF
                 return;
             }
 
-            // Создаём окно выбора статуса
             var selectWindow = new Window
             {
                 Title = "Выбор статуса книги",
@@ -119,7 +112,7 @@ namespace BookPlatformWPF
             comboBox.Items.Add("Reading");
             comboBox.Items.Add("Read it");
             comboBox.Items.Add("Abandoned");
-            comboBox.SelectedIndex = 0; // По умолчанию "В планах"
+            comboBox.SelectedIndex = 0; 
 
             stack.Children.Add(comboBox);
 
@@ -140,7 +133,6 @@ namespace BookPlatformWPF
                     return;
                 }
 
-                // Проверяем существующую запись
                 var existing = Core.Context.UserBooks.FirstOrDefault(ub =>
                     ub.UserID == _currentUser.UserID && ub.BookID == _currentBook.BookID);
 
@@ -171,7 +163,6 @@ namespace BookPlatformWPF
             selectWindow.Content = stack;
             selectWindow.ShowDialog();
         }
-        // ==================== ОСТАВИТЬ ОТЗЫВ ====================
         private void LeaveReview_Click(object sender, RoutedEventArgs e)
         {
             if (_currentUser == null)
@@ -180,7 +171,6 @@ namespace BookPlatformWPF
                 return;
             }
 
-            // ===== ОКНО ОТЗЫВА =====
             var reviewWindow = new Window
             {
                 Title = "Оставить отзыв",
@@ -297,7 +287,6 @@ namespace BookPlatformWPF
             reviewWindow.ShowDialog();
         }
 
-        // ==================== ПОЖАЛОВАТЬСЯ НА КНИГУ ====================
         private void ComplainBook_Click(object sender, RoutedEventArgs e)
         {
             if (_currentUser == null)
@@ -382,7 +371,7 @@ namespace BookPlatformWPF
 
             _currentBook.IsFrozen = !_currentBook.IsFrozen;
             Core.Context.SaveChanges();
-            UpdateVisibility(); // Обновляем видимость после изменения
+            UpdateVisibility(); 
             MessageBox.Show(_currentBook.IsFrozen ? "Книга заморожена" : "Книга разморожена");
         }
         private void FreezeReview_Click(object sender, RoutedEventArgs e)
@@ -391,7 +380,6 @@ namespace BookPlatformWPF
 
             if (sender is Button btn && btn.Tag is Reviews review)
             {
-                // Предполагаем, что у Review есть поле IsFrozen. Если нет — можно добавить позже.
                 review.IsFrozen = !review.IsFrozen;
                 Core.Context.SaveChanges();
                 MessageBox.Show("Отзыв заморожен.");

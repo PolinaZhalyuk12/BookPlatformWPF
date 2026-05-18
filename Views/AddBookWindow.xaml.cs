@@ -30,7 +30,6 @@ namespace BookPlatformWPF
 
             lbGenres.ItemsSource = genres;
 
-            // Если редактируем книгу — отмечаем жанры
             if (_bookToEdit != null)
             {
                 foreach (var genre in genres)
@@ -57,7 +56,6 @@ namespace BookPlatformWPF
 
             Books currentBook;
 
-            // ===== РЕДАКТИРОВАНИЕ =====
             if (_bookToEdit != null)
             {
                 currentBook = _bookToEdit;
@@ -67,12 +65,10 @@ namespace BookPlatformWPF
                 currentBook.CoverPath = txtCoverPath.Text;
                 currentBook.Content = txtContent.Text;
 
-                // Очищаем старые жанры
                 currentBook.Genres.Clear();
             }
             else
             {
-                // ===== ДОБАВЛЕНИЕ =====
                 currentBook = new Books
                 {
                     Title = txtTitle.Text,
@@ -87,7 +83,6 @@ namespace BookPlatformWPF
                 Core.Context.Books.Add(currentBook);
             }
 
-            // ===== СОХРАНЕНИЕ ЖАНРОВ =====
             var selectedGenres = lbGenres.SelectedItems
                 .Cast<Genres>()
                 .ToList();

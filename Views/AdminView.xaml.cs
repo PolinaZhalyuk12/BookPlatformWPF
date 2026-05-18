@@ -17,7 +17,6 @@ namespace BookPlatformWPF
             DataContext = _vm;
         }
 
-        // ==================== ЖАЛОБЫ ====================
         private void ApproveComplaint_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button btn &&
@@ -82,7 +81,6 @@ namespace BookPlatformWPF
             }
         }
 
-        // ==================== ЗАЯВКИ НА РОЛЬ ====================
         private void ApproveRoleRequest_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button btn && btn.Tag is RoleRequests req)
@@ -110,7 +108,6 @@ namespace BookPlatformWPF
             }
         }
 
-        // ==================== ЗАЯВКИ НА РАЗМОРОЗКУ ====================
         private void ApproveUnfreeze_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button btn &&
@@ -155,13 +152,10 @@ namespace BookPlatformWPF
             }
         }
 
-        // ==================== ПОЛЬЗОВАТЕЛИ ====================
-        // ==================== СМЕНА РОЛИ ПОЛЬЗОВАТЕЛЯ ====================
         private void ChangeUserRole_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button btn && btn.Tag is Users user)
             {
-                // Получаем все роли
                 var allRoles = Core.Context.Roles.ToList();
                 if (allRoles.Count == 0)
                 {
@@ -169,7 +163,6 @@ namespace BookPlatformWPF
                     return;
                 }
 
-                // Создаём окно выбора роли
                 var roleWindow = new Window
                 {
                     Title = $"Смена роли для: {user.DisplayName}",

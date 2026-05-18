@@ -10,14 +10,13 @@ namespace BookPlatformWPF
         public ProfileView(Users user)
         {
             InitializeComponent();
-            DataContext = new ProfileViewModel(user);   // Передаём пользователя
+            DataContext = new ProfileViewModel(user);  
         }
 
-        // Конструктор без параметров для дизайнера
         public ProfileView()
         {
             InitializeComponent();
-            DataContext = new ProfileViewModel(); // Пустой для дизайнера
+            DataContext = new ProfileViewModel();
         }
         private void RequestAuthor_Click(object sender, RoutedEventArgs e)
         {
@@ -37,7 +36,6 @@ namespace BookPlatformWPF
             if (DataContext is ProfileViewModel vm &&
                 vm.User != null)
             {
-                // Проверяем существующую заявку
                 bool exists = Core.Context.UnfreezeRequests.Any(r =>
                     r.UserID == vm.User.UserID);
 

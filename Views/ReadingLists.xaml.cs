@@ -61,7 +61,6 @@ namespace BookPlatformWPF
             }
         }
 
-        // ==================== ПЕРЕМЕСТИТЬ КНИГУ (выбор из списка) ====================
         private void MoveBook_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button btn && btn.Tag is Books book)
@@ -129,7 +128,6 @@ namespace BookPlatformWPF
                         MessageBox.Show($"Книга успешно перемещена в:\n**{newStatus}**",
                                         "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                        // Обновляем текущий список
                         if (cbStatus.SelectedItem is ComboBoxItem currentItem)
                         {
                             _vm.LoadBooksByStatus(currentItem.Content.ToString());

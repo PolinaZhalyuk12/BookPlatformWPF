@@ -13,10 +13,10 @@ namespace BookPlatformWPF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BookPlatformEntities2 : DbContext
+    public partial class qqqEntities : DbContext
     {
-        public BookPlatformEntities2()
-            : base("name=BookPlatformEntities2")
+        public qqqEntities()
+            : base("name=qqqEntities")
         {
         }
     

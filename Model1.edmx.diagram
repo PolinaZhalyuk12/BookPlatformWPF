@@ -4,29 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0789d9e5ee0247a58b278b0af74adc14" Name="Diagram1">
-        <EntityTypeShape EntityType="BookPlatformModel.Books" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatformModel.Complaints" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatformModel.Genres" Width="1.5" PointX="7.5" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatformModel.Reviews" Width="1.5" PointX="10.5" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatformModel.RoleRequests" Width="1.5" PointX="8.25" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatformModel.Roles" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatformModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatformModel.UnfreezeRequests" Width="1.5" PointX="7.5" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatformModel.UserBooks" Width="1.5" PointX="10.5" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatformModel.Users" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
-        <AssociationConnector Association="BookPlatformModel.FK__Books__AuthorID__30F848ED" ManuallyRouted="false" />
-        <AssociationConnector Association="BookPlatformModel.FK__Reviews__BookID__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="BookPlatformModel.FK__UnfreezeR__BookI__5165187F" ManuallyRouted="false" />
-        <AssociationConnector Association="BookPlatformModel.FK__UserBooks__BookI__403A8C7D" ManuallyRouted="false" />
-        <AssociationConnector Association="BookPlatformModel.FK__Complaint__UserI__44FF419A" ManuallyRouted="false" />
-        <AssociationConnector Association="BookPlatformModel.FK__Reviews__UserID__3A81B327" ManuallyRouted="false" />
-        <AssociationConnector Association="BookPlatformModel.FK__RoleReque__Reque__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="BookPlatformModel.FK__RoleReque__UserI__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="BookPlatformModel.FK__Users__RoleID__29572725" ManuallyRouted="false" />
-        <AssociationConnector Association="BookPlatformModel.FK__UnfreezeR__UserI__5070F446" ManuallyRouted="false" />
-        <AssociationConnector Association="BookPlatformModel.FK__UserBooks__UserI__3F466844" ManuallyRouted="false" />
-        <AssociationConnector Association="BookPlatformModel.BookGenres" ManuallyRouted="false" />
+      <Diagram DiagramId="132fac384114436094d0dc2f10ea7873" Name="Diagram1">
+        <EntityTypeShape EntityType="qqqModel.Books" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="qqqModel.Complaints" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="qqqModel.Genres" Width="1.5" PointX="7.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="qqqModel.Reviews" Width="1.5" PointX="10.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="qqqModel.RoleRequests" Width="1.5" PointX="8.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="qqqModel.Roles" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="qqqModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="qqqModel.UnfreezeRequests" Width="1.5" PointX="7.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="qqqModel.UserBooks" Width="1.5" PointX="10.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="qqqModel.Users" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <AssociationConnector Association="qqqModel.FK__Books__AuthorID__7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="qqqModel.FK__Reviews__BookID__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="qqqModel.FK__UnfreezeR__BookI__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="qqqModel.FK__UserBooks__BookI__06CD04F7" ManuallyRouted="false" />
+        <AssociationConnector Association="qqqModel.FK__Complaint__UserI__7F2BE32F" ManuallyRouted="false" />
+        <AssociationConnector Association="qqqModel.FK__Reviews__UserID__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="qqqModel.FK__RoleReque__Reque__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="qqqModel.FK__RoleReque__UserI__02084FDA" ManuallyRouted="false" />
+        <AssociationConnector Association="qqqModel.FK__Users__RoleID__07C12930" ManuallyRouted="false" />
+        <AssociationConnector Association="qqqModel.FK__UnfreezeR__UserI__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="qqqModel.FK__UserBooks__UserI__05D8E0BE" ManuallyRouted="false" />
+        <AssociationConnector Association="qqqModel.BookGenres" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

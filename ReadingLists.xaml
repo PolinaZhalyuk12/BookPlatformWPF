@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="BookPlatformWPF.ReadingListsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="10">
+
+            <!-- Верхняя панель -->
+            <WrapPanel Margin="0,0,0,10">
+
+                <TextBox x:Name="txtSearch"
+                 Width="220"
+                 Height="32"
+                 Margin="0,0,10,0"
+                 VerticalContentAlignment="Center"
+                 TextChanged="Filters_Changed"/>
+
+                <ComboBox x:Name="cmbGenre"
+                  Width="180"
+                  Height="32"
+                  Margin="0,0,10,0"
+                  SelectionChanged="Filters_Changed"/>
+
+                <ComboBox x:Name="cmbSort"
+                  Width="180"
+                  Height="32"
+                  Margin="0,0,10,0"
+                  SelectionChanged="Filters_Changed">
+
+                    <ComboBoxItem IsSelected="True">
+                        По названию (А-Я)
+                    </ComboBoxItem>
+
+                    <ComboBoxItem>
+                        По названию (Я-А)
+                    </ComboBoxItem>
+
+                    <ComboBoxItem>
+                        По рейтингу (высокий)
+                    </ComboBoxItem>
+
+                    <ComboBoxItem>
+                        По рейтингу (низкий)
+                    </ComboBoxItem>
+
+                </ComboBox>
+
+                <ComboBox x:Name="cbStatus"
+                  Width="180"
+                  Height="32"
+                  SelectionChanged="Filters_Changed">
+
+                    <ComboBoxItem IsSelected="True">
+                        In the plans
+                    </ComboBoxItem>
+
+                    <ComboBoxItem>
+                        Reading
+                    </ComboBoxItem>
+
+                    <ComboBoxItem>
+                        Read it
+                    </ComboBoxItem>
+
+                    <ComboBoxItem>
+                        Abandoned
+                    </ComboBoxItem>
+
+                </ComboBox>
+
+            </WrapPanel>
+
+        </StackPanel>
+
+        <ListView Grid.Row="1" ItemsSource="{Binding BooksInList}" Margin="10" x:Name="lvBooks">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Title}" Width="280"/>
+                    <GridViewColumn Header="Автор" DisplayMemberBinding="{Binding DisplayName}" Width="180"/>
+                    <GridViewColumn Header="Рейтинг" DisplayMemberBinding="{Binding AvgRating, StringFormat={}{0:0.0}}" Width="100"/>
+                    <GridViewColumn Header="Действия" Width="220">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Открыть" Click="OpenBook_Click" Tag="{Binding Book}" Margin="0,0,5,0" Padding="8,4"/>
+                                    <Button Content="Переместить" Click="MoveBook_Click" Tag="{Binding Book}" Padding="8,4"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

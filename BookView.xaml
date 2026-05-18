@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="BookPlatformWPF.BookView"
+              x:Name="BookViewRoot"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+            <!-- Пометка о заморозке книги -->
+            <Border x:Name="borderFrozen" Background="#E74C3C" Padding="10" Margin="0,0,0,15" Visibility="Visible">
+                <TextBlock Text="⚠️ КНИГА ЗАМОРОЖЕНА" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+            </Border>
+
+            <Image Source="{Binding Book.CoverPath}" Width="200" Height="280" HorizontalAlignment="Left" Margin="0,0,0,15"/>
+
+            <TextBlock Text="{Binding Book.Title}" FontSize="26" FontWeight="Bold"/>
+            <TextBlock Text="{Binding AuthorName}" FontSize="18" Foreground="Gray" Margin="0,0,0,10"/>
+            <TextBlock Text="{Binding GenresString}" FontStyle="Italic" Margin="0,0,0,15"/>
+
+            <TextBlock Text="Описание" FontWeight="Bold" FontSize="16" Margin="0,10,0,5"/>
+            <TextBlock Text="{Binding Book.Description}" TextWrapping="Wrap" Margin="0,0,0,20"/>
+
+            <TextBlock Text="Текст книги" FontWeight="Bold" FontSize="16" Margin="0,10,0,5"/>
+            <TextBox Text="{Binding Book.Content}" TextWrapping="Wrap" IsReadOnly="True" Height="350" 
+                     VerticalScrollBarVisibility="Visible" Margin="0,0,0,25"/>
+
+            <!-- Основные кнопки -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,25">
+                <Button Content="Добавить в список чтения" Click="AddToList_Click" Padding="12,8" Margin="0,0,10,0"/>
+                <Button Content="Оставить отзыв" Click="LeaveReview_Click" Padding="12,8" Margin="0,0,10,0"/>
+                <Button Content="Пожаловаться на книгу" Click="ComplainBook_Click" Padding="12,8" Margin="0,0,10,0"/>
+                <Button Content="Пожаловаться на автора" Click="ComplainAuthor_Click" Padding="12,8" Background="#E67E22" Foreground="White"/>
+            </StackPanel>
+
+            <!-- Админ панель -->
+            <StackPanel x:Name="AdminPanel" Orientation="Horizontal" Margin="0,0,0,20" Visibility="Visible">
+                <Button Content="Заморозить / Разморозить книгу" 
+                        Click="FreezeBook_Click" 
+                        Padding="12,8" 
+                        Background="#E74C3C" 
+                        Foreground="White"/>
+            </StackPanel>
+
+            <!-- Отзывы -->
+            <TextBlock Text="Отзывы читателей" FontSize="20" FontWeight="Bold" Margin="0,10,0,15"/>
+            <ListView ItemsSource="{Binding Reviews}" Height="320">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Пользователь" DisplayMemberBinding="{Binding Users.DisplayName}" Width="150"/>
+                        <GridViewColumn Header="Оценка" DisplayMemberBinding="{Binding Rating}" Width="80"/>
+                        <GridViewColumn Header="Отзыв" DisplayMemberBinding="{Binding ReviewText}" Width="400"/>
+                        <GridViewColumn Header="Статус" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding IsFrozen, StringFormat='{}{0:Заморожен;Активен}'}" 
+                                               Foreground="Red" FontWeight="SemiBold"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Действия" Width="230">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Пожаловаться" 
+                                                Click="ComplainReview_Click" 
+                                                Tag="{Binding}" 
+                                                Padding="6,3"/>
+                                        <!-- Кнопка заморозки отзыва только для админа -->
+                                        <Button Content="Заморозить"
+        Click="FreezeReview_Click"
+        Loaded="FreezeReviewButton_Loaded"
+        Tag="{Binding}"
+        Padding="6,3"
+        Visibility="Collapsed"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

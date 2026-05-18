@@ -1,0 +1,163 @@
+﻿<UserControl x:Class="BookPlatformWPF.AdminView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Margin="10">
+        <TabControl>
+
+            <!-- 1. Список жалоб -->
+            <TabItem Header="Жалобы">
+                <ListView ItemsSource="{Binding Complaints}" x:Name="lvComplaints">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding CreatedAt, StringFormat=dd.MM.yyyy HH:mm}" Width="140"/>
+                            <GridViewColumn Header="Тип" DisplayMemberBinding="{Binding TargetType}" Width="80"/>
+                            <GridViewColumn Header="Причина" DisplayMemberBinding="{Binding Reason}" Width="400"/>
+                            <GridViewColumn Header="Действия" Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="Принять" Click="ApproveComplaint_Click" Tag="{Binding}" Margin="0,0,5,0" Padding="8,4"/>
+                                            <Button Content="Отклонить" Click="RejectComplaint_Click" Tag="{Binding}" Padding="8,4"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <!-- 2. Заявки на роль Автора -->
+            <TabItem Header="Заявки на роль Автора">
+                <ListView ItemsSource="{Binding RoleRequests}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Пользователь" DisplayMemberBinding="{Binding Users.DisplayName}" Width="200"/>
+                            <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding Status}" Width="100"/>
+                            <GridViewColumn Header="Действия" Width="220">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="Одобрить" Click="ApproveRoleRequest_Click" Tag="{Binding}" Margin="0,0,5,0"/>
+                                            <Button Content="Отклонить" Click="RejectRoleRequest_Click" Tag="{Binding}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <!-- 3. Заявки на разморозку -->
+            <TabItem Header="Заявки на разморозку">
+                <ListView ItemsSource="{Binding UnfreezeRequests}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Тип" Width="100"/>
+                            <GridViewColumn Header="Причина" DisplayMemberBinding="{Binding Reason}" Width="400"/>
+                            <GridViewColumn Header="Действия" Width="220">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="Разморозить" Click="ApproveUnfreeze_Click" Tag="{Binding}" Margin="0,0,5,0"/>
+                                            <Button Content="Отклонить" Click="RejectUnfreeze_Click" Tag="{Binding}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <!-- 4. Замороженные объекты -->
+            <TabItem Header="Замороженные">
+
+                <ListView ItemsSource="{Binding FrozenItems}">
+
+                    <ListView.View>
+
+                        <GridView>
+
+                            <GridViewColumn Header="Тип"
+                                Width="140"
+                                DisplayMemberBinding="{Binding Type}"/>
+
+                            <GridViewColumn Header="Название"
+                                Width="420"
+                                DisplayMemberBinding="{Binding Name}"/>
+
+                            <GridViewColumn Header="Дата"
+                                Width="160"
+                                DisplayMemberBinding="{Binding FrozenDate, StringFormat=dd.MM.yyyy HH:mm}"/>
+
+                        </GridView>
+
+                    </ListView.View>
+
+                </ListView>
+
+            </TabItem>
+            <!-- 5. Все пользователи + управление -->
+            <TabItem Header="Пользователи">
+                <ListView ItemsSource="{Binding Users}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Логин" DisplayMemberBinding="{Binding Login}" Width="120"/>
+                            <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding DisplayName}" Width="200"/>
+                            <GridViewColumn Header="Роль" DisplayMemberBinding="{Binding Roles.RoleName}" Width="100"/>
+                            <GridViewColumn Header="Статус" Width="120">
+
+                                <GridViewColumn.CellTemplate>
+
+                                    <DataTemplate>
+
+                                        <TextBlock FontWeight="SemiBold">
+
+                                            <TextBlock.Style>
+
+                                                <Style TargetType="TextBlock">
+
+                                                    <Setter Property="Text" Value="Активен"/>
+
+                                                    <Style.Triggers>
+
+                                                        <DataTrigger Binding="{Binding IsFrozen}" Value="True">
+
+                                                            <Setter Property="Text" Value="Заморожен"/>
+
+                                                        </DataTrigger>
+
+                                                    </Style.Triggers>
+
+                                                </Style>
+
+                                            </TextBlock.Style>
+
+                                        </TextBlock>
+
+                                    </DataTemplate>
+
+                                </GridViewColumn.CellTemplate>
+
+                            </GridViewColumn>
+                            <GridViewColumn Header="Действия" Width="280">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="Сменить роль" Click="ChangeUserRole_Click" Tag="{Binding}" Margin="0,0,5,0" Padding="8,4"/>
+                                            <Button Content="Сменить пароль" Click="ChangePassword_Click" Tag="{Binding}" Margin="0,0,5,0" Padding="8,4"/>
+                                               <Button Content="Заморозить/Разморозить" Click="ToggleFreezeUser_Click" Tag="{Binding}" Padding="8,4"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

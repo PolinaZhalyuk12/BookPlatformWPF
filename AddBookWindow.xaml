@@ -1,0 +1,32 @@
+﻿<Window x:Class="BookPlatformWPF.AddBookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добавление новой книги" Height="600" Width="620"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Grid Margin="20">
+        <StackPanel>
+            <TextBlock Text="Название книги" FontWeight="Bold" Margin="0,0,0,5"/>
+            <TextBox x:Name="txtTitle" Height="35" Margin="0,0,0,15"/>
+
+            <TextBlock Text="Описание" FontWeight="Bold" Margin="0,0,0,5"/>
+            <TextBox x:Name="txtDescription" Height="80" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,15"/>
+
+            <TextBlock Text="Обложка (путь)" FontWeight="Bold" Margin="0,0,0,5"/>
+            <TextBox x:Name="txtCoverPath" Height="35" Margin="0,0,0,15" Text="/covers/default.jpg"/>
+            <TextBlock Text="Жанры"
+           FontWeight="Bold"
+           Margin="0,0,0,5"/>
+
+            <ListBox x:Name="lbGenres"
+         Height="120"
+         SelectionMode="Multiple"
+         Margin="0,0,0,15"
+         DisplayMemberPath="Name"/>
+            <TextBlock Text="Текст книги" FontWeight="Bold" Margin="0,0,0,5"/>
+            <TextBox x:Name="txtContent" Height="180" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="0,0,0,20"/>
+
+            <Button Content="Сохранить книгу" Click="BtnSave_Click" Height="45" FontSize="16"/>
+        </StackPanel>
+    </Grid>
+</Window>

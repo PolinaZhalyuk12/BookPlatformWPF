@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="BookPlatformWPF.AuthorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                Margin="0,0,0,15">
+
+                <TextBlock Text="Мои книги"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"/>
+
+                <Button Content="Добавить книгу"
+                Click="AddNewBook_Click"
+                Padding="18,10"
+                Margin="30,0,0,0"
+                Background="#27AE60"
+                Foreground="White"/>
+
+                <TextBox x:Name="txtSearch"
+                 Width="220"
+                 Height="34"
+                 Margin="25,0,0,0"
+                 VerticalContentAlignment="Center"
+                 TextChanged="FilterBooks_Changed"/>
+
+            </StackPanel>
+
+            <CheckBox x:Name="cbOnlyFrozen"
+              Content="Только замороженные"
+              Margin="0,0,0,10"
+              Checked="FilterBooks_Changed"
+              Unchecked="FilterBooks_Changed"/>
+
+        </StackPanel>
+
+        <ListView Grid.Row="1" ItemsSource="{Binding MyBooks}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Title}" Width="320"/>
+                    <GridViewColumn Header="Дата публикации" DisplayMemberBinding="{Binding CreatedAt, StringFormat=dd.MM.yyyy}" Width="140"/>
+                    <GridViewColumn Header="Статус" Width="140">
+
+                        <GridViewColumn.CellTemplate>
+
+                            <DataTemplate>
+
+                                <TextBlock FontWeight="SemiBold">
+
+                                    <TextBlock.Style>
+
+                                        <Style TargetType="TextBlock">
+
+                                            <Setter Property="Text"
+                                Value="Активна"/>
+
+                                            <Setter Property="Foreground"
+                                Value="DarkGreen"/>
+
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding IsFrozen}"
+                                         Value="True">
+
+                                                    <Setter Property="Text"
+                                        Value="Заморожена"/>
+
+                                                    <Setter Property="Foreground"
+                                        Value="DarkRed"/>
+
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+
+                                        </Style>
+
+                                    </TextBlock.Style>
+
+                                </TextBlock>
+
+                            </DataTemplate>
+
+                        </GridViewColumn.CellTemplate>
+
+                    </GridViewColumn>
+                    <GridViewColumn Header="Действия" Width="280">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Редактировать" 
+                                            Click="EditBook_Click" 
+                                            Tag="{Binding Book}" 
+                                            Margin="0,0,8,0" Padding="10,5"/>
+
+                                    <Button Content="Оспорить заморозку" 
+                                            Click="UnfreezeBook_Click" 
+                                            Tag="{Binding Book}" 
+                                            Padding="10,5"
+                                            Background="#F39C12"
+                                            Foreground="White"
+                                            Visibility="{Binding ShowUnfreezeButton}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

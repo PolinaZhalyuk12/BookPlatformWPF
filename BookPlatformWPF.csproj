@@ -145,8 +145,8 @@
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AddBookWindow.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\AdminView.xaml">
       <SubType>Designer</SubType>

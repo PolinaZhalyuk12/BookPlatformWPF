@@ -27,7 +27,7 @@ namespace BookPlatformWPF
 
             var readerRole = Core.Context.Roles.FirstOrDefault(r => r.RoleName == "Читатель");
 
-            var newUser = new Users  
+            var newUser = new Users   // ← Убедитесь, что класс называется Users
             {
                 Login = txtLogin.Text.Trim(),
                 Password = txtPassword.Password,
@@ -37,7 +37,7 @@ namespace BookPlatformWPF
                             : txtDisplayName.Text.Trim(),
                 RoleID = readerRole?.RoleID ?? 1,
                 IsFrozen = false,
-                CreatedAt = DateTime.Now   
+                CreatedAt = DateTime.Now   // ← Явное присвоение текущей даты
             };
 
             Core.Context.Users.Add(newUser);
